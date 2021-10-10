@@ -7,3 +7,10 @@ export const getThingsSuccess = (things) => {
     payload: things
   }
 }
+
+export const getWordRequest = (word) => {
+  return {
+    type: actionTypes.GET_WORD_REQUEST,
+    payload: word
+  }
+}
