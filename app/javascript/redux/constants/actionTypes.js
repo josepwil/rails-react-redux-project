@@ -1,0 +1,4 @@
+export const actionTypes = {
+  GET_THINGS_REQUEST: 'GET_THINGS_REQUEST',
+  GET_THINGS_SUCCESS: 'GET_THINGS_SUCCESS',
+}

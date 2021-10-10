@@ -7,12 +7,11 @@ import { Provider } from "react-redux";
 
 import HelloWorld from "./HelloWorld";
 
-import configureStore from "../configureStore";
-const store = configureStore()
+import store from "../redux/configureStore";
 
 
-class App extends React.Component {
-  render () {
+
+function App() {
     return (
       <Provider store={store}>
         <BrowserRouter>
@@ -24,6 +23,5 @@ class App extends React.Component {
       </Provider>
     );
   }
-}
 
 export default App
