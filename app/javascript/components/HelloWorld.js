@@ -40,6 +40,7 @@ const HelloWorld = (props) => {
       <br />
       <ul>{ thingsList }</ul>
       <ul>{ word }</ul>
+      <button className="getWordBtn" onClick={() => getWord()}>NEXT</button>
     </React.Fragment>
   );
 }
