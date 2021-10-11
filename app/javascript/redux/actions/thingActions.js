@@ -15,7 +15,7 @@ export const getWordRequest = (word) => {
   }
 }
 
-export const incrementScore = (team) => {
+export const incrementScoreAction = (team) => {
   return {
     type: actionTypes.INCREMENT_SCORE,
     payload: team
