@@ -6,6 +6,8 @@ import { getThingsSuccess, getWordRequest } from "../redux/actions/thingActions"
 const HelloWorld = (props) => {
   const things = useSelector((state) => state.allThings.things)
   const word = useSelector((state) => state.allThings.word)
+  const teamOneScore = useSelector((state) => state.scoreReducer.teamOne)
+  const teamTwoScore = useSelector((state) => state.scoreReducer.teamTwo)
   const dispatch = useDispatch();
 
 
@@ -39,6 +41,8 @@ const HelloWorld = (props) => {
       <button className="getThingsBtn" onClick={() => getThings()}>getThings</button>
       <br />
       <ul>{ thingsList }</ul>
+      <ul>Team one: {teamOneScore}</ul>
+      <ul>Team Two: {teamTwoScore}</ul>
       <ul>{ word }</ul>
       <button className="getWordBtn" onClick={() => getWord()}>NEXT</button>
     </React.Fragment>

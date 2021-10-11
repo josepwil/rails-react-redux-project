@@ -5,7 +5,7 @@ const initialState = {
       guid: "123"
     }
   ],
-  word: ''
+  word: '',
 }
 
 export const thingReducer = (state = initialState, action) => {

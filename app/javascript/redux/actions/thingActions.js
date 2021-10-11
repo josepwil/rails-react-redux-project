@@ -14,3 +14,10 @@ export const getWordRequest = (word) => {
     payload: word
   }
 }
+
+export const incrementScore = (team) => {
+  return {
+    type: actionTypes.INCREMENT_SCORE,
+    payload: team
+  }
+}
