@@ -21,3 +21,9 @@ export const incrementScoreAction = (team) => {
     payload: team
   }
 }
+export const updateWinner = (team) => {
+  return {
+    type: actionTypes.UPDATE_WINNER,
+    payload: team
+  }
+}

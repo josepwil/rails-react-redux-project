@@ -1,13 +1,14 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useSelector, useDispatch } from "react-redux"
-import { getThingsSuccess, getWordRequest, incrementScoreAction } from "../redux/actions/thingActions"
+import { getThingsSuccess, getWordRequest, incrementScoreAction, updateWinner } from "../redux/actions/thingActions"
 
 const HelloWorld = (props) => {
   const things = useSelector((state) => state.allThings.things)
   const word = useSelector((state) => state.allThings.word)
   const teamOneScore = useSelector((state) => state.scoreReducer.teamOne)
   const teamTwoScore = useSelector((state) => state.scoreReducer.teamTwo)
+  const winner = useSelector((state) => state.scoreReducer.winner)
   const dispatch = useDispatch();
 
 
@@ -27,23 +28,36 @@ const HelloWorld = (props) => {
       .catch(error => console.log(error));
   }
 
+  const startGame = () => {
+    setTimeout(function(){ alert("Times up!"); }, 90000);
+    getWord()
+  }
+
   const incrementScore = (team) => {
-    console.log("incrementing score")
-    dispatch(incrementScoreAction(team))
+    if (team === "teamOne" && teamOneScore === 6) {
+      dispatch(updateWinner("teamOne"))
+      dispatch(incrementScoreAction(team))
+    } else if (team === "teamTwo" && teamTwoScore === 6) {
+      dispatch(updateWinner("teamTwo"))
+      dispatch(incrementScoreAction(team))
+    } else {
+      dispatch(incrementScoreAction(team))
+    }
   }
   
   const thingsList = things.map((thing, i) => {
     return <li key={i}>{thing.name} {thing.guid}</li>
   })
 
-  useEffect(() => {
-    getWord()
-  }, [])
+  // useEffect(() => {
+  //   getWord()
+  // }, [])
 
   return (
     <React.Fragment>
       Greeting: {props.greeting}
       <button className="getThingsBtn" onClick={() => getThings()}>getThings</button>
+      <button className="getWordBtn" onClick={() => startGame()}>Start Game</button>
       <br />
       <ul>{ thingsList }</ul>
       <button className="incrementBtn" onClick={() => incrementScore("teamOne")}>Team one</button>
@@ -52,6 +66,7 @@ const HelloWorld = (props) => {
       <ul>Team two: {teamTwoScore}</ul>
       <ul>{ word }</ul>
       <button className="getWordBtn" onClick={() => getWord()}>NEXT</button>
+      <h1>{winner && `${winner} WINS!!`}</h1>
     </React.Fragment>
   );
 }
